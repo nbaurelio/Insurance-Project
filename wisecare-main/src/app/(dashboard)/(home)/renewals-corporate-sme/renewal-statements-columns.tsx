@@ -113,7 +113,7 @@ export const RenewalStatementsColumns = ({
     cell: ({ row }) => (row.original as any).hmo_provider?.name ?? '-',
   },
   {
-    accessorKey: 'account_types.name',
+    accessorKey: 'account_type.name',
     header: ({ column }) => 
       <TableHeader 
         column={column} 
@@ -121,7 +121,7 @@ export const RenewalStatementsColumns = ({
         customSortOrder={accountOrder}
         onStatusClick={setCustomSortStatus}
       />,
-    cell: ({ row }) => (row.original as any).account_types?.name ?? '-',
+    cell: ({ row }) => (row.original as any).account_type?.name ?? '-',
     sortingFn: (rowA, rowB, columnId) => {
       const statusA = rowA.getValue(columnId) as string;
       const statusB = rowB.getValue(columnId) as string;
