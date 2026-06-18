@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Plus, X } from 'lucide-react'
-import config from 'next/config'
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 
@@ -49,7 +48,6 @@ const AddAgent = () => {
           >
             <Avatar
               className="border-card mx-6 h-32 w-32 -translate-y-16 rounded-full border-4"
-              {...config}
             />
             <AddAgentForm setIsOpen={setIsOpen} />
           </Suspense>

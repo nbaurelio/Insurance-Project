@@ -9,7 +9,7 @@ export const metadata = async (): Promise<Metadata> => {
   }
 }
 
-const signIn = () => {
+const SignIn = () => {
   return (
     <div className="h-screen w-full flex-row items-center justify-center px-24 py-8 sm:flex md:px-0 md:py-0">
       <div className="mx-auto w-full max-w-md flex-col items-center justify-center sm:rounded-xl sm:bg-white sm:py-12 sm:shadow-md md:flex md:h-screen md:min-h-full md:w-1/2 md:max-w-none md:shadow-none">
@@ -22,4 +22,4 @@ const signIn = () => {
   )
 }
 
-export default signIn
+export default SignIn
