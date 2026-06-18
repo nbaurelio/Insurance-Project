@@ -8,40 +8,30 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart'
 import { useQuery } from '@supabase-cache-helpers/postgrest-react-query'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { CartesianGrid, Line, LineChart, XAxis } from 'recharts'
 import { format, subYears } from 'date-fns'
 import { createBrowserClient } from '@/utils/supabase-client'
 
 const ClientAcquisitionChart = () => {
-  const [rerender, setRerender] = useState(0)
   const supabase = createBrowserClient()
-  const { data } = useQuery(
+  const startDate = useMemo(() => subYears(new Date(), 1).toISOString(), [])
+  const endDate = useMemo(() => new Date().toISOString(), [])
+  const { data, isLoading, error } = useQuery(
     supabase
       .from('accounts')
       .select('company_name, created_at')
-      .gte(
-        'created_at',
-        new Date(subYears(new Date(), 1)).toLocaleString('en-US', {
-          timeZone: 'UTC',
-        }),
-      )
-      .lte(
-        'created_at',
-        new Date().toLocaleString('en-US', { timeZone: 'Asia/Manila' }),
-      )
-      .throwOnError(),
+      .gte('created_at', startDate)
+      .lte('created_at', endDate),
   )
 
   const formattedData = useMemo(() => {
     if (!data) return []
 
-    const startDate = subYears(new Date(), 1)
-    const endDate = new Date()
     const months = []
     const currentDate = new Date(startDate)
 
-    while (currentDate <= endDate) {
+    while (currentDate <= new Date(endDate)) {
       months.push(format(new Date(currentDate), 'yyyy-MM'))
       currentDate.setMonth(currentDate.getMonth() + 1)
     }
@@ -68,18 +58,16 @@ const ClientAcquisitionChart = () => {
       return entry ? entry : { date: month, count: 0 }
     })
 
-    // force rerender to ensure chart updates
-    setRerender(rerender + 1)
     return completeData
+  }, [data, startDate, endDate])
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
+  if (isLoading) return <div className="mt-6 h-[300px] w-full flex items-center justify-center text-white">Loading...</div>
+  if (error) return <div className="mt-6 h-[300px] w-full flex items-center justify-center text-red-400">Error: {String(error)}</div>
 
   return (
     <ChartContainer
       config={chartConfig}
       className="mt-6 h-[300px] w-full"
-      key={rerender}
     >
       <LineChart accessibilityLayer data={formattedData} margin={{ top: 20 }}>
         <CartesianGrid vertical={true} strokeDasharray="3 3" />
@@ -90,7 +78,8 @@ const ClientAcquisitionChart = () => {
           tickMargin={8}
           minTickGap={32}
           tickFormatter={(value) => {
-            const date = new Date(value)
+            const [year, month] = value.split('-')
+            const date = new Date(parseInt(year), parseInt(month) - 1, 1)
             return date.toLocaleDateString('en-US', {
               month: 'short',
               year: 'numeric',
@@ -103,7 +92,9 @@ const ClientAcquisitionChart = () => {
               className="w-[150px]"
               nameKey="count"
               labelFormatter={(value) => {
-                return new Date(value).toLocaleDateString('en-US', {
+                const [year, month] = value.split('-')
+                const date = new Date(parseInt(year), parseInt(month) - 1, 1)
+                return date.toLocaleDateString('en-US', {
                   month: 'short',
                   year: 'numeric',
                 })
@@ -113,7 +104,7 @@ const ClientAcquisitionChart = () => {
         />
         <Line
           dataKey="count"
-          type="natural"
+          type="monotone"
           stroke={`var(--color-count)`}
           strokeWidth={4}
           dot={false}
