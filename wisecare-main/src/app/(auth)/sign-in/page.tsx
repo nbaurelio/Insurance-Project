@@ -1,6 +1,6 @@
 import SplashArt from './splash-art'
 import { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+import SignInFormWrapper from './sign-in-form-wrapper'
 
 export const metadata = async (): Promise<Metadata> => {
   return {
@@ -8,13 +8,11 @@ export const metadata = async (): Promise<Metadata> => {
   }
 }
 
-const SignInForm = dynamic(() => import('./sign-in-form'), { ssr: false })
-
 const SignIn = () => {
   return (
     <div className="h-screen w-full flex-row items-center justify-center px-24 py-8 sm:flex md:px-0 md:py-0">
       <div className="mx-auto w-full max-w-md flex-col items-center justify-center sm:rounded-xl sm:bg-white sm:py-12 sm:shadow-md md:flex md:h-screen md:min-h-full md:w-1/2 md:max-w-none md:shadow-none">
-        <SignInForm />
+        <SignInFormWrapper />
       </div>
       <div className="relative hidden h-full w-1/2 flex-auto items-center justify-center overflow-hidden bg-gray-800 p-16 md:flex lg:px-28 dark:border-l">
         <SplashArt />
