@@ -3,7 +3,6 @@ import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import ThemeProvider from '@/providers/ThemeProvider'
 import { VercelToolbar } from '@vercel/toolbar/next'
 import { Inter } from 'next/font/google'
-import NextTopLoader from 'nextjs-toploader'
 import { Toaster } from '@/components/ui/toaster'
 import ConfirmationDialog from '@/components/confirmation-dialog/confirmation-dialog'
 import './globals.css'
@@ -33,6 +32,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  console.log('[RootLayout] component types:', {
+    ThemeProvider: typeof ThemeProvider,
+    TooltipProvider: typeof TooltipProvider,
+    ReactQueryProvider: typeof ReactQueryProvider,
+    Toaster: typeof Toaster,
+    ConfirmationDialog: typeof ConfirmationDialog,
+    VercelToolbar: typeof VercelToolbar,
+  })
   return (
     <html
       lang="en"
@@ -41,7 +48,6 @@ export default function RootLayout({
       suppressHydrationWarning={true}
     >
       <body className="bg-background text-foreground">
-        <NextTopLoader showSpinner={false} height={2} color="#2acf80" />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
