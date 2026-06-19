@@ -1,4 +1,3 @@
-'use server'
 import AdminNavigationClient from '@/components/layout/navigation/admin-navigation-client'
 import isAdmin from '@/utils/is-admin'
 import { createServerClient } from '@/utils/supabase'

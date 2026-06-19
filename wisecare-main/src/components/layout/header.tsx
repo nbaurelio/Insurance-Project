@@ -1,4 +1,3 @@
-'use server'
 import { Sheet } from '@/components/ui/sheet'
 
 import NotificationBell from '@/components/layout/notification/notification-bell'

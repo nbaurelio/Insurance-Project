@@ -1,4 +1,3 @@
-'use server'
 import RenewalList from '@/app/(dashboard)/(home)/(dashboard)/upcoming-renewals/renewal-list'
 import {
   Card,

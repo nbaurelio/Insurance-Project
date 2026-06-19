@@ -1,4 +1,3 @@
-'use server'
 import AdminNavigation from '@/components/layout/navigation/admin-navigation'
 import NavLogo from '@/components/layout/navigation/nav-logo'
 import NavUser from '@/components/layout/navigation/nav-user'
