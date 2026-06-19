@@ -13,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import WisecareLogo from '@/assets/images/wisecare-logo-2 1.png'
 import Image from 'next/image'
@@ -36,6 +36,8 @@ const SignInForm = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [captchaToken, setCaptchaToken] = useState<string>('')
   const captcha = useRef<HCaptcha>(null)
+  const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => { setIsMounted(true) }, [])
 
   const handleSignIn: SubmitHandler<z.infer<typeof signInSchema>> = async ({
     email,
@@ -97,13 +99,15 @@ const SignInForm = () => {
             />
           </div>
           <div className="mt-4">
-            <HCaptcha
-              ref={captcha}
-              sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
-              onVerify={(token) => {
-                setCaptchaToken(token)
-              }}
-            />
+            {isMounted && (
+              <HCaptcha
+                ref={captcha}
+                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
+                onVerify={(token) => {
+                  setCaptchaToken(token)
+                }}
+              />
+            )}
           </div>
           <Button variant={'link'}>
             <Link href={'/forgot-password'}>Forgot password?</Link>

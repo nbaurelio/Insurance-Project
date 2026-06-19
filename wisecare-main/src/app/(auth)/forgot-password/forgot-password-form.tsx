@@ -17,7 +17,7 @@ import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { createBrowserClient } from '@/utils/supabase-client'
@@ -29,6 +29,8 @@ const ForgotPasswordForm = () => {
 
   const [captchaToken, setCaptchaToken] = useState<string>('')
   const captcha = useRef<HCaptcha>(null)
+  const [isMounted, setIsMounted] = useState(false)
+  useEffect(() => { setIsMounted(true) }, [])
 
   const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
     resolver: zodResolver(ForgotPasswordSchema),
@@ -93,13 +95,15 @@ const ForgotPasswordForm = () => {
             )}
           />
           <div className="mt-4">
-            <HCaptcha
-              ref={captcha}
-              sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
-              onVerify={(token) => {
-                setCaptchaToken(token)
-              }}
-            />
+            {isMounted && (
+              <HCaptcha
+                ref={captcha}
+                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY || ''}
+                onVerify={(token) => {
+                  setCaptchaToken(token)
+                }}
+              />
+            )}
           </div>
           <Button className="mt-8 w-full" disabled={isLoading}>
             {isLoading ? (
