@@ -1,5 +1,4 @@
-'use server'
-
+﻿
 import { prefetchQuery } from '@supabase-cache-helpers/postgrest-react-query'
 import PendingTable from './pending-table'
 import { cookies } from 'next/headers'

@@ -1,5 +1,4 @@
-'use server'
-
+﻿
 import ClientAcquisitionCard from '@/app/(dashboard)/(home)/(dashboard)/client-acquisition/client-acquisition-card'
 import RetentionRateCard from '@/app/(dashboard)/(home)/(dashboard)/retention-rate/retention-rate-card'
 import TopAgentsCard from '@/app/(dashboard)/(home)/(dashboard)/top-agents/top-agents-card'

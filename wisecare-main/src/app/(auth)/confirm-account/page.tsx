@@ -1,5 +1,4 @@
-'use server'
-import SetPasswordForm from '@/app/(auth)/confirm-account/set-password-form'
+﻿import SetPasswordForm from '@/app/(auth)/confirm-account/set-password-form'
 import { Metadata } from 'next'
 
 export const metadata = async (): Promise<Metadata> => {

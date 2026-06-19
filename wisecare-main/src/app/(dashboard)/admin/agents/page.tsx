@@ -1,5 +1,4 @@
-'use server'
-import { PageHeader, PageTitle } from '@/components/page-header'
+﻿import { PageHeader, PageTitle } from '@/components/page-header'
 import { createServerClient } from '@/utils/supabase'
 import { prefetchQuery } from '@supabase-cache-helpers/postgrest-react-query'
 import {

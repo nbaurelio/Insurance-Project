@@ -1,5 +1,4 @@
-'use server'
-import { ApprovalRequestProvider } from '@/app/(dashboard)/admin/approval-request/accounts/approval-request-provider'
+﻿import { ApprovalRequestProvider } from '@/app/(dashboard)/admin/approval-request/accounts/approval-request-provider'
 import ApprovalRequestTable from '@/app/(dashboard)/admin/approval-request/accounts/approval-request-table'
 import { FeatureFlagProvider } from '@/providers/FeatureFlagProvider'
 import getPendingAccounts from '@/queries/get-pending-accounts'

@@ -1,5 +1,4 @@
-'use server'
-import AccountDownloads from '@/app/(dashboard)/(home)/file-manager/account-files/account-downloads'
+﻿import AccountDownloads from '@/app/(dashboard)/(home)/file-manager/account-files/account-downloads'
 import DownloadsPageTitle from '@/app/(dashboard)/(home)/file-manager/downloads-page-title'
 import { DownloadsProvider } from '@/app/(dashboard)/(home)/file-manager/downloads-provider'
 import EmployeeDownloads from '@/app/(dashboard)/(home)/file-manager/employee-files/employee-downloads'

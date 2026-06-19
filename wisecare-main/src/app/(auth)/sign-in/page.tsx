@@ -1,4 +1,3 @@
-'use server'
 import SignInForm from './sign-in-form'
 import SplashArt from './splash-art'
 import { Metadata } from 'next'

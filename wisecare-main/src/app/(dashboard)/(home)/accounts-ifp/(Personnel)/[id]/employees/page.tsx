@@ -1,4 +1,3 @@
-'use server'
 import CompanyProvider from '@/app/(dashboard)/(home)/accounts-ifp/(Personnel)/[id]/(company profile)/company-provider'
 import employeesColumns from '@/app/(dashboard)/(home)/accounts-ifp/(Personnel)/[id]/employees/employees-columns'
 import EmployeesDataTable from '@/app/(dashboard)/(home)/accounts-ifp/(Personnel)/[id]/employees/employees-data-table'

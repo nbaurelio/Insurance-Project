@@ -1,5 +1,4 @@
-'use server'
-import ForgotPasswordForm from '@/app/(auth)/forgot-password/forgot-password-form'
+﻿import ForgotPasswordForm from '@/app/(auth)/forgot-password/forgot-password-form'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Metadata } from 'next'

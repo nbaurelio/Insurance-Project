@@ -1,5 +1,4 @@
-'use server'
-import getAccounts from '@/queries/get-accounts'
+﻿import getAccounts from '@/queries/get-accounts'
 import getAccountsColumnSortingByUserId from '@/queries/get-accounts-column-sorting-by-user-id'
 import getAccountsColumnVisibilityByUserId from '@/queries/get-accounts-column-visibility-by-user-id'
 import { accountBenefitUpload } from '@/utils/flags'

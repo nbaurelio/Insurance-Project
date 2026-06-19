@@ -1,5 +1,4 @@
-'use server'
-import UserListHeader from '@/app/(dashboard)/admin/users/user-list-header'
+﻿import UserListHeader from '@/app/(dashboard)/admin/users/user-list-header'
 import getUsers from '@/queries/get-users'
 import { createServerClient } from '@/utils/supabase'
 import { prefetchQuery } from '@supabase-cache-helpers/postgrest-react-query'

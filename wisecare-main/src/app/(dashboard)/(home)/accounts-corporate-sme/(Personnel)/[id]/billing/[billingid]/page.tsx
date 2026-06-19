@@ -1,4 +1,3 @@
-'use server'
 
 import BillingInformation from '@/app/(dashboard)/(home)/accounts-corporate-sme/(Personnel)/[id]/billing/[billingid]/billing-information'
 import { Button } from '@/components/ui/button'

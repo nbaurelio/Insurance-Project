@@ -1,5 +1,4 @@
-'use server'
-import getTypes from '@/queries/get-types'
+﻿import getTypes from '@/queries/get-types'
 import { createServerClient } from '@/utils/supabase'
 import { prefetchQuery } from '@supabase-cache-helpers/postgrest-react-query'
 import {

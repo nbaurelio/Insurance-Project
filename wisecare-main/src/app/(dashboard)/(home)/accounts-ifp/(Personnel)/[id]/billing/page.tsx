@@ -1,4 +1,3 @@
-'use server'
 import CompanyProvider from '@/app/(dashboard)/(home)/accounts-ifp/(Personnel)/[id]/(company profile)/company-provider'
 import BillingStatementsTable from '@/app/(dashboard)/(home)/accounts-ifp/(Personnel)/[id]/billing/billing-statements-table'
 import StatsCard from '@/app/(dashboard)/(home)/accounts-ifp/(Personnel)/[id]/billing/stats-card'

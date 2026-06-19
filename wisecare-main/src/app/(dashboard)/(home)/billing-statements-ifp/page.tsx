@@ -1,5 +1,4 @@
-'use server'
-
+﻿
 import { BillingProvider } from '@/app/(dashboard)/(home)/billing-statements-ifp/billing-provider'
 import getBillingStatements from '@/queries/get-billing-statements'
 import pageProtect from '@/utils/page-protect'
