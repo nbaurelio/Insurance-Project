@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react/*'
+import { Meta, StoryObj } from '@storybook/react'
 import { Input } from '../../components/ui/input'
 
 const meta: Meta = {
