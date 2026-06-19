@@ -1,4 +1,6 @@
 
+export const dynamic = 'force-dynamic'
+
 import { FC, ReactNode } from 'react'
 import Header from '../../components/layout/header'
 

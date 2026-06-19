@@ -3,6 +3,8 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { ReactNode } from 'react'
 
+export const dynamic = 'force-dynamic'
+
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
   try {
     const supabase = createServerClient(await cookies())
