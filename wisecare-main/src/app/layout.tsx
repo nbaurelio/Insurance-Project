@@ -2,29 +2,16 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import ReactQueryProvider from '@/providers/ReactQueryProvider'
 import ThemeProvider from '@/providers/ThemeProvider'
 import { VercelToolbar } from '@vercel/toolbar/next'
-import dynamic from 'next/dynamic'
 import { Inter } from 'next/font/google'
 import NextTopLoader from 'nextjs-toploader'
+import { Toaster } from '@/components/ui/toaster'
+import ConfirmationDialog from '@/components/confirmation-dialog/confirmation-dialog'
 import './globals.css'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
 })
-
-const Toaster = dynamic(
-  () => import('@/components/ui/toaster').then((mod) => mod.Toaster),
-  {
-    ssr: true,
-  },
-)
-
-const ConfirmationDialog = dynamic(
-  () => import('@/components/confirmation-dialog/confirmation-dialog'),
-  {
-    ssr: true,
-  },
-)
 
 const defaultUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
