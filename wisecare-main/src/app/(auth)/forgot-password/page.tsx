@@ -1,13 +1,18 @@
-﻿import ForgotPasswordForm from '@/app/(auth)/forgot-password/forgot-password-form'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 
 export const metadata = async (): Promise<Metadata> => {
   return {
     title: 'Forgot Password',
   }
 }
+
+const ForgotPasswordForm = dynamic(
+  () => import('@/app/(auth)/forgot-password/forgot-password-form'),
+  { ssr: false },
+)
 
 const ForgotPasswordPage = async () => {
   return (

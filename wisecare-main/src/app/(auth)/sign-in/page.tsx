@@ -1,12 +1,14 @@
-import SignInForm from './sign-in-form'
 import SplashArt from './splash-art'
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 
 export const metadata = async (): Promise<Metadata> => {
   return {
     title: 'Sign In',
   }
 }
+
+const SignInForm = dynamic(() => import('./sign-in-form'), { ssr: false })
 
 const SignIn = () => {
   return (
