@@ -1,4 +1,3 @@
-'use server'
 import pageProtect from '@/utils/page-protect'
 import { ReactNode } from 'react'
 

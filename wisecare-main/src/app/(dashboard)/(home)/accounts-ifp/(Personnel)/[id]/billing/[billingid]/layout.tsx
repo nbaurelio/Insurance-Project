@@ -1,4 +1,3 @@
-'use server'
 
 import getBillingStatementById from '@/queries/get-billing-statement-by-id'
 import { createServerClient } from '@/utils/supabase'

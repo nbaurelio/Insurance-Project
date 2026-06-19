@@ -1,4 +1,3 @@
-'use server'
 import pageProtect from '@/utils/page-protect'
 
 const BillingLayout = async ({ children }: { children: React.ReactNode }) => {

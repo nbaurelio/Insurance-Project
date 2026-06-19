@@ -1,4 +1,3 @@
-'use server'
 import { createServerClient } from '@/utils/supabase'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'

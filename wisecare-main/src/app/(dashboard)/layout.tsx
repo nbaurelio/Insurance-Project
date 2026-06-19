@@ -1,4 +1,3 @@
-'use server'
 
 import { FC, ReactNode } from 'react'
 import Header from '../../components/layout/header'
