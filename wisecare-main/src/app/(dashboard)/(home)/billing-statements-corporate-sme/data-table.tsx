@@ -30,21 +30,20 @@ import { useBillingContext } from '@/app/(dashboard)/(home)/billing-statements-c
 import BillingStatementModal from '@/components/billing-statement/billing-statement-modal'
 import TableSearch from '@/components/table-search'
 import { Skeleton } from '@/components/ui/skeleton'
-import getBillingStatements from '@/queries/get-billing-statements'
 import { Tables } from '@/types/database.types'
-import { useQuery } from '@supabase-cache-helpers/postgrest-react-query'
 import DataTableRow from './data-table-row'
-import { createBrowserClient } from '@/utils/supabase-client'
 import { useUserServer } from '@/providers/UserProvider'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  isLoading?: boolean
 }
 
 const DataTable = <TData, TValue>({
   columns,
   data,
+  isLoading = false,
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([])
   const [globalFilter, setGlobalFilter] = useState<any>('')
@@ -64,9 +63,6 @@ const DataTable = <TData, TValue>({
       globalFilter,
     },
   })
-
-  const supabase = createBrowserClient()
-  const { count, isLoading } = useQuery(getBillingStatements(supabase))
 
   const { isEditModalOpen, setIsEditModalOpen, originalData } =
     useBillingContext()

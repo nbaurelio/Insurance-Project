@@ -10,7 +10,6 @@ const PendingTable = () => {
   const supabase = createBrowserClient()
 
   const { data, isLoading } = useQuery(getBillingStatements(supabase))
-  if (isLoading) return null
   const filteredData = (data || [])
     .filter(
       (item: any) =>{
@@ -23,6 +22,6 @@ const PendingTable = () => {
       ...item,
       account_type_id: item.account_type?.id ?? null,
     }))
-  return <DataTable columns={pendingColumns} data={filteredData || []} />
+  return <DataTable columns={pendingColumns} data={filteredData || []} isLoading={isLoading} />
 }
 export default PendingTable
