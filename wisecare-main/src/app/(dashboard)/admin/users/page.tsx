@@ -11,10 +11,8 @@ import { cookies } from 'next/headers'
 import UserList from './user-list'
 import { Metadata } from 'next'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Users',
-  }
+export const metadata: Metadata = {
+  title: 'Users',
 }
 
 const UsersPage = async () => {

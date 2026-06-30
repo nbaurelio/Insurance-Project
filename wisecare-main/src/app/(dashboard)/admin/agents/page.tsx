@@ -13,10 +13,8 @@ import AddAgent from '@/app/(dashboard)/admin/agents/create/add-agent'
 import getAgents from '@/queries/get-agents'
 import { Metadata } from 'next'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Manage Agents',
-  }
+export const metadata: Metadata = {
+  title: 'Manage Agents',
 }
 
 const AgentsPage = async () => {

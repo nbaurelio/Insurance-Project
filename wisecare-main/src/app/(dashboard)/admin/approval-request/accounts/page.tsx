@@ -22,10 +22,8 @@ const ApprovalRequestInfo = dynamic(
     ),
 )
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Review Accounts',
-  }
+export const metadata: Metadata = {
+  title: 'Review Accounts',
 }
 
 const ApprovalRequestPage = async () => {

@@ -25,10 +25,8 @@ const CommissionCard = dynamic(
   },
 )
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Dashboard',
-  }
+export const metadata: Metadata = {
+  title: 'Dashboard',
 }
 
 const Dashboard = async () => {

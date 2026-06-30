@@ -10,10 +10,8 @@ import { cookies } from 'next/headers'
 import TypeCard from './type-card'
 import { Metadata } from 'next'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Manage Types',
-  }
+export const metadata: Metadata = {
+  title: 'Manage Types',
 }
 
 const TypesPage = async () => {

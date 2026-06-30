@@ -1,4 +1,9 @@
+import { TooltipProvider } from '@/components/ui/tooltip'
+import ReactQueryProvider from '@/providers/ReactQueryProvider'
+import ThemeProvider from '@/providers/ThemeProvider'
 import { Inter } from 'next/font/google'
+import { Toaster } from '@/components/ui/toaster'
+import ConfirmationDialog from '@/components/confirmation-dialog/confirmation-dialog'
 import './globals.css'
 
 const inter = Inter({
@@ -24,10 +29,30 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  console.log('[RootLayout] minimal render — no providers')
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning={true}>
-      <body className="bg-background text-foreground">{children}</body>
+    <html
+      lang="en"
+      className={inter.className}
+      suppressHydrationWarning={true}
+    >
+      <body className="bg-background text-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <ReactQueryProvider>
+              <div>
+                {children}
+                <Toaster />
+                <ConfirmationDialog />
+              </div>
+            </ReactQueryProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

@@ -1,10 +1,8 @@
 ﻿import SetPasswordForm from '@/app/(auth)/confirm-account/set-password-form'
 import { Metadata } from 'next'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Confirm Account',
-  }
+export const metadata: Metadata = {
+  title: 'Confirm Account',
 }
 
 const ConfirmAccount = async () => {

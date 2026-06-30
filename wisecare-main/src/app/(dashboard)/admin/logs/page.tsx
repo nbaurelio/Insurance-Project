@@ -11,10 +11,8 @@ import {
 import { cookies } from 'next/headers'
 import { Metadata } from 'next'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Activity Log',
-  }
+export const metadata: Metadata = {
+  title: 'Activity Log',
 }
 
 const ActivityLogsPage = async () => {

@@ -3,10 +3,8 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import ForgotPasswordForm from './forgot-password-form'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Forgot Password',
-  }
+export const metadata: Metadata = {
+  title: 'Forgot Password',
 }
 
 const ForgotPasswordPage = async () => {

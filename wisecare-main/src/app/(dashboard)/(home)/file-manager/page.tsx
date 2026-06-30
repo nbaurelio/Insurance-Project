@@ -18,10 +18,8 @@ const DownloadsSheet = dynamic(
   () => import('@/app/(dashboard)/(home)/file-manager/downloads-sheet'),
 )
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'File Manager',
-  }
+export const metadata: Metadata = {
+  title: 'File Manager',
 }
 
 const FileManagerPage = async () => {

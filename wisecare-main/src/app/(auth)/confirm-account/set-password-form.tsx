@@ -18,23 +18,31 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import Message from '@/components/message'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import setPasswordSchema from '@/app/(auth)/confirm-account/set-password-schema'
 import { createBrowserClient } from '@/utils/supabase-client'
 
 const SetPasswordForm = () => {
   const supabase = createBrowserClient()
-
-  // retreive session
-  const urlParams = new URLSearchParams(window.location.hash.substring(1)) // Remove the leading #
-  const refreshToken = urlParams.get('refresh_token') || ''
+  const [refreshToken, setRefreshToken] = useState('')
+  const [urlError, setUrlError] = useState<string | null>(null)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    const refreshSession = async () => {
-      await supabase.auth.refreshSession({ refresh_token: refreshToken })
+    setIsMounted(true)
+    const hashParams = new URLSearchParams(window.location.hash.substring(1))
+    const token = hashParams.get('refresh_token') || ''
+    setRefreshToken(token)
+
+    const errorCode = hashParams.get('error_code')
+    if (errorCode?.startsWith('4')) {
+      setUrlError(hashParams.get('error_description'))
     }
-    refreshSession()
-  }, [refreshToken, supabase.auth])
+
+    if (token) {
+      supabase.auth.refreshSession({ refresh_token: token })
+    }
+  }, [supabase.auth])
 
   const form = useForm<z.infer<typeof setPasswordSchema>>({
     resolver: zodResolver(setPasswordSchema),
@@ -61,21 +69,14 @@ const SetPasswordForm = () => {
       return setError(error.message.toString())
     }
 
-    // if success, then redirect to home page
     router.push('/')
   }
 
-  // check if there is an error in the url
-  const params = new URLSearchParams(window.location.hash.slice())
+  if (!isMounted) return null
 
-  if (params.get('error_code')?.startsWith('4')) {
-    // show error message if error is a 4xx error
-    return <Message variant="error">{params.get('error_description')}</Message>
+  if (urlError) {
+    return <Message variant="error">{urlError}</Message>
   }
-
-  // if (error_code && error_description) {
-  //   return <Message variant="error">{error_description}</Message>
-  // }
 
   return (
     <div className="border-border md:bg-card flex flex-col gap-8 pt-8 md:rounded-xl md:border md:p-12 md:shadow-xs">

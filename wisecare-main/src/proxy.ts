@@ -1,21 +1,33 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { createMiddlewareClient } from '@/utils/supabase'
 
+const PUBLIC_PATHS = ['/sign-in', '/forgot-password', '/confirm-account', '/api/auth/callback', '/pending']
+
 export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
   try {
-    // This `try/catch` block is only here for the interactive tutorial.
-    // Feel free to remove once you have Supabase connected.
     const { supabase, response } = createMiddlewareClient(request)
 
-    // Refresh session if expired - required for Server Components
-    // https://supabase.com/docs/guides/auth/auth-helpers/nextjs#managing-session-with-middleware
+    // Refresh session so Server Components can read the latest cookies
     await supabase.auth.getSession()
+
+    const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p))
+    if (!isPublic) {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser()
+
+      if (!user) {
+        const url = request.nextUrl.clone()
+        url.pathname = '/sign-in'
+        return NextResponse.redirect(url)
+      }
+    }
 
     return response
   } catch (e) {
-    // If you are here, a Supabase client could not be created!
-    // This is likely because you have not set up environment variables.
-    // Check out http://localhost:3000 for Next Steps.
+    // Supabase client could not be created (env vars missing, etc.)
     return NextResponse.next({
       request: { headers: request.headers },
     })

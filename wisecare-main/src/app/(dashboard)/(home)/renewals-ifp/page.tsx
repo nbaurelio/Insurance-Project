@@ -15,10 +15,8 @@ import PendingTable from './pending-table'
 import getAccountsColumnSortingByUserId from '@/queries/get-accounts-column-sorting-by-user-id'
 import getAccountsColumnVisibilityByUserId from '@/queries/get-accounts-column-visibility-by-user-id'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Renewal Statements',
-  }
+export const metadata: Metadata = {
+  title: 'Renewal Statements',
 }
 
 const RenewalStatementsPage = async ({

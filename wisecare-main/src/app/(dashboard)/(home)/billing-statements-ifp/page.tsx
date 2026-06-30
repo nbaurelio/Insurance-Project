@@ -13,10 +13,8 @@ import { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import PendingTable from './pending-table'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Billing Statements',
-  }
+export const metadata: Metadata = {
+  title: 'Billing Statements',
 }
 
 const BillingStatementsPage = async () => {

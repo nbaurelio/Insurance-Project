@@ -2,10 +2,8 @@ import SplashArt from './splash-art'
 import { Metadata } from 'next'
 import SignInForm from './sign-in-form'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Sign In',
-  }
+export const metadata: Metadata = {
+  title: 'Sign In',
 }
 
 const SignIn = () => {

@@ -15,10 +15,8 @@ import { cookies } from 'next/headers'
 import AccountsTable from './accounts-table'
 import { FeatureFlagProvider } from '@/providers/FeatureFlagProvider'
 
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Accounts',
-  }
+export const metadata: Metadata = {
+  title: 'Accounts',
 }
 
 const AccountsPage = async ({

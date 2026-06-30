@@ -11,10 +11,8 @@ import {
 } from '@tanstack/react-query'
 import { Metadata } from 'next'
 import { cookies } from 'next/headers'
-export const metadata = async (): Promise<Metadata> => {
-  return {
-    title: 'Employee Export Requests',
-  }
+export const metadata: Metadata = {
+  title: 'Employee Export Requests',
 }
 
 const Page = async () => {

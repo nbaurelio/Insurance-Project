@@ -1,16 +1,13 @@
-const withVercelToolbar = require('@vercel/toolbar/plugins/next')()
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  turbopack: {},
+}
 
 module.exports = withBundleAnalyzer(nextConfig)
-
-// Vercel Toolbar on local development environment
-module.exports = withVercelToolbar(nextConfig)
 
 // Injected content via Sentry wizard below
 /*
